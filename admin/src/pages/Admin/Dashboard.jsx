@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { AdminContext } from '../../context/AdminContext'
 
 const Dashboard = () => {
-  return (
+
+  const {aToken,dashData,cancelAppointment,getDashData}= useContext(AdminContext)
+
+  useEffect(() => {
+    if (aToken) {
+      getDashData ();
+    }
+  }, [aToken]);
+  return dashData && (
     <div>
-      DAs
+      
     </div>
   )
 }
