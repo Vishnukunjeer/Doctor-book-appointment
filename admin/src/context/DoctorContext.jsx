@@ -1,10 +1,27 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const DoctorContext = createContext()
 
 const DoctorContextProvider = (props) => {
-  const value = {
 
+
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
+
+  const [dToken, setDToken] = useState(localStorage.getItem('dToken') ? localStorage.getItem('dToken') : '')
+
+  const [appointments, setAppointments] = useState([])
+
+  const getAppointments = async (params) => {
+    try {
+      const { data } = await axios.get(backendUrl + '/api/doctor/profile')
+      
+    } catch (error) {
+
+    }
+  }
+  const value = {
+    dToken, setDToken,
+    backendUrl
   }
   return (
     <DoctorContext.Provider value={value}>
